@@ -34,8 +34,8 @@ export class FaceBio {
     }
 
     const formData = new FormData();
-    formData.set("captured_image", new Blob([readFileSync(captured)]));
-    formData.set("stored_image", new Blob([readFileSync(stored)]));
+    formData.set("captured_image", new Blob([readFileSync(captured) as any]));
+    formData.set("stored_image", new Blob([readFileSync(stored) as any]));
 
     const req = {
       method: "POST",
@@ -58,7 +58,7 @@ export class FaceBio {
     }
 
     const formData = new FormData();
-    formData.set("image", new Blob([readFileSync(image)]));
+    formData.set("image", new Blob([readFileSync(image) as any]));
 
     const req = {
       method: "POST",
@@ -81,7 +81,7 @@ export class FaceBio {
     }
 
     const formData = new FormData();
-    formData.set("image", new Blob([readFileSync(image)]));
+    formData.set("image", new Blob([readFileSync(image) as any]));
     formData.set("gesture-code", gestureCode);
 
     const req = {
@@ -95,6 +95,6 @@ export class FaceBio {
 
   base64_encode(file: string) {
     const bitmap = readFileSync(file);
-    return Buffer.from(bitmap).toString("base64");
+    return bitmap.toString("base64");
   }
 }

@@ -1,22 +1,28 @@
 export type KTP = {
-  condition: {
-    [key in KTP_CONDITIONS]: boolean;
+  condition?: Partial<Record<KTP_CONDITIONS, boolean>> & {
+    [key: string]: boolean | undefined;
   };
-  images: {
-    photo: string;
-    sign: string;
+  images?: {
+    photo?: string;
+    sign?: string;
+    [key: string]: string | undefined;
   };
-  read: {
-    [key in KTP_FIELDS]: {
-      confidence: number;
-      value: string;
-    };
+  read?: Partial<Record<KTP_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
+    [key: string]: { 
+      confidence?: number;
+      confidenceText?: string;
+      value?: string;
+      valueOriginal?: string;
+      polygon?: number[][];
+      pageIndex?: number;
+    } | undefined;
   };
-  status: string;
-  form?: {
-    [key in KTP_FIELDS]: string;
+  status?: string;
+  form?: Partial<Record<KTP_FIELDS, string>> & {
+    [key: string]: string | undefined;
   };
   reason?: string;
+  [key: string]: unknown;
 };
 
 type KTP_FIELDS =
@@ -36,14 +42,15 @@ type KTP_FIELDS =
   | "rtRw"
   | "statusPerkawinan"
   | "tanggalLahir"
-  | "tempatLahir";
+  | "tempatLahir"
+  | "tandaTangan";
 
 type KTP_CONDITIONS =
-  | "is_blurred"
-  | "is_bright"
-  | "is_copy"
-  | "is_cropped"
-  | "is_dark"
-  | "is_flash"
-  | "is_ktp"
-  | "is_rotated";
+  | "isBlurred"
+  | "isBright"
+  | "isCopy"
+  | "isCropped"
+  | "isDark"
+  | "isFlash"
+  | "isKtp"
+  | "isRotated";

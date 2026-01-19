@@ -6,6 +6,7 @@ import { KtpSessions } from "./sessions/ktpSessions";
 import { NPWPSessions } from "./sessions/npwpSessions";
 
 import { logInfo } from "../util/logger";
+import { normalizeKeys } from "../util/normalize";
 import { isDefined, runSchemaValidation } from "../util/validator";
 import { visionFetch } from "../util/visionFetch";
 
@@ -14,11 +15,16 @@ import { FileNotFoundError } from "../error/file-not-found";
 import type { KTP } from "../types/ktp";
 import type { NPWP } from "../types/npwp";
 import type { GeneralDocument } from "../types/generalDocument";
+import type { BPKB } from "../types/bpkb";
+import type { KK } from "../types/kk";
+import type { STNK } from "../types/stnk";
+import type { Passport } from "../types/passport";
 import { Invoice } from "../types/invoice";
 import { Receipt } from "../types/receipt";
 import { SingaporeNRIC } from "../types/singaporeNRIC";
 import { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
 import { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
+import { SIM } from "../types/sim";
 
 type OCRParam = { image: string; qualities_detector?: boolean };
 
@@ -43,22 +49,22 @@ export class Ocr {
 
   async kk(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - KK");
-    return this.fetchOCR<any>(param, "kk", newConfig);
+    return this.fetchOCR<KK>(param, "kk", newConfig);
   }
 
   async stnk(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - STNK");
-    return this.fetchOCR<any>(param, "stnk", newConfig);
+    return this.fetchOCR<STNK>(param, "stnk", newConfig);
   }
 
   async bpkb(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - BPKB");
-    return this.fetchOCR<any>(param, "bpkb", newConfig);
+    return this.fetchOCR<BPKB>(param, "bpkb", newConfig);
   }
 
   async passport(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Passport");
-    return this.fetchOCR<any>(param, "passport", newConfig);
+    return this.fetchOCR<Passport>(param, "passport", newConfig);
   }
 
   async licensePlate(param: OCRParam, newConfig?: Partial<Settings>) {
@@ -104,7 +110,16 @@ export class Ocr {
     );
   }
 
-  private fetchOCR<T>(
+    async sim(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - SIM");
+    return this.fetchOCR<SIM>(
+      param,
+      "sim",
+      newConfig
+    );
+  }
+
+  private async fetchOCR<T>(
     param: OCRParam,
     endpoint: string,
     newConfig?: Partial<Settings>
@@ -123,7 +138,7 @@ export class Ocr {
     const formData = new FormData();
     formData.set(
       "image",
-      new Blob([readFileSync(image)], { type: "image/jpeg" }),
+      new Blob([readFileSync(image) as any], { type: "image/jpeg" }),
       "filename.jpg"
     );
 
@@ -133,13 +148,16 @@ export class Ocr {
     };
 
     const config = this.config.getConfig(newConfig);
-    return visionFetch(
+    const response = await visionFetch(
       config,
       qualities_detector
         ? `ocr/:version/${endpoint}/qualities`
         : `ocr/:version/${endpoint}`,
       req
     );
+    
+    // Normalize snake_case keys to camelCase for TypeScript consistency
+    return normalizeKeys<T>(response);
   }
 
   validateOCRParam(param: OCRParam) {

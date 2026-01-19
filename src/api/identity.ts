@@ -48,7 +48,7 @@ export class Identity {
     formData.set("nik", nik);
     formData.set("name", name);
     formData.set("date_of_birth", date_of_birth);
-    formData.set("face_image", new Blob([readFileSync(face_image)]));
+    formData.set("face_image", new Blob([readFileSync(face_image) as any]));
 
     const req = {
       method: "POST",
