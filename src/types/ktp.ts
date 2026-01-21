@@ -31,6 +31,7 @@ type KTP_FIELDS =
   | "berlaku_hingga"
   | "golongan_darah"
   | "jenis_kelamin"
+  | "foto"
   | "kecamatan"
   | "kelurahan_desa"
   | "kewarganegaraan"

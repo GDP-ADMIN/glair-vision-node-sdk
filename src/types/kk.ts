@@ -10,7 +10,6 @@ type FieldValue = {
   pageIndex?: number;
 };
 
-// Regular KK fields
 type KK_FIELDS =
   | "alamat"
   | "desa_kelurahan"
@@ -24,7 +23,6 @@ type KK_FIELDS =
   | "rt_rw"
   | "tanggal_dikeluarkan";
 
-// Table fields (for family members)
 type KK_TABLE_FIELDS =
   | "agama"
   | "golongan_darah"
