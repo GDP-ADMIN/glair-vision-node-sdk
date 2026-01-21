@@ -1,16 +1,17 @@
-import { existsSync, readFileSync } from "fs";
-
+import { readFileSync } from "fs";
 import { logInfo } from "../util/logger";
 import { visionFetch } from "../util/visionFetch";
 import { Config, Settings } from "./config";
 import { PassiveLivenessSessions } from "./sessions/passiveLivenessSessions";
 import { ActiveLivenessSessions } from "./sessions/activeLivenessSessions";
 
-import { FileNotFoundError } from "../error/file-not-found";
 
-type MatchParam = { captured: string; stored: string };
-type PassiveLivenessParam = { image: string };
-type ActiveLivenessParam = { image: string; gestureCode: string };
+import { ImageSource } from "../types/image";
+import { getImageBlob } from "../util/image";
+
+type MatchParam = { captured: ImageSource; stored: ImageSource };
+type PassiveLivenessParam = { image: ImageSource };
+type ActiveLivenessParam = { image: ImageSource; gestureCode: string };
 
 export class FaceBio {
   readonly passiveLivenessSessions: PassiveLivenessSessions;
@@ -25,17 +26,9 @@ export class FaceBio {
     logInfo("Face Biometric - Match", { param });
     const { captured, stored } = param;
 
-    if (!existsSync(captured)) {
-      throw new FileNotFoundError(captured);
-    }
-
-    if (!existsSync(stored)) {
-      throw new FileNotFoundError(stored);
-    }
-
     const formData = new FormData();
-    formData.set("captured_image", new Blob([readFileSync(captured) as any]));
-    formData.set("stored_image", new Blob([readFileSync(stored) as any]));
+    formData.set("captured_image", await getImageBlob(captured));
+    formData.set("stored_image", await getImageBlob(stored));
 
     const req = {
       method: "POST",
@@ -53,12 +46,8 @@ export class FaceBio {
     logInfo("Face Biometric - Passive Liveness", { param });
     const { image } = param;
 
-    if (!existsSync(image)) {
-      throw new FileNotFoundError(image);
-    }
-
     const formData = new FormData();
-    formData.set("image", new Blob([readFileSync(image) as any]));
+    formData.set("image", await getImageBlob(image));
 
     const req = {
       method: "POST",
@@ -76,12 +65,8 @@ export class FaceBio {
     logInfo("Face Biometric - Active Liveness", { param });
     const { image, gestureCode } = param;
 
-    if (!existsSync(image)) {
-      throw new FileNotFoundError(image);
-    }
-
     const formData = new FormData();
-    formData.set("image", new Blob([readFileSync(image) as any]));
+    formData.set("image", await getImageBlob(image));
     formData.set("gesture-code", gestureCode);
 
     const req = {

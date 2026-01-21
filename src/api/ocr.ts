@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from "node:fs";
-
 import { Config, Settings } from "./config";
 
 import { KtpSessions } from "./sessions/ktpSessions";
@@ -9,7 +7,6 @@ import { logInfo } from "../util/logger";
 import { isDefined, runSchemaValidation } from "../util/validator";
 import { visionFetch } from "../util/visionFetch";
 
-import { FileNotFoundError } from "../error/file-not-found";
 
 import type { KTP } from "../types/ktp";
 import type { NPWP } from "../types/npwp";
@@ -24,8 +21,11 @@ import { SingaporeNRIC } from "../types/singaporeNRIC";
 import { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
 import { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
 import { SIM } from "../types/sim";
+import { Plate } from "../types/plate";
+import { ImageSource } from "../types/image";
+import { getImageBlob } from "../util/image";
 
-type OCRParam = { image: string; qualities_detector?: boolean };
+type OCRParam = { image: ImageSource; qualities_detector?: boolean };
 
 export class Ocr {
   readonly ktpSessions: KtpSessions;
@@ -68,7 +68,7 @@ export class Ocr {
 
   async licensePlate(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - License Plate");
-    return this.fetchOCR<any>(param, "plate", newConfig);
+    return this.fetchOCR<Plate>(param, "plate", newConfig);
   }
 
   async generalDocument(param: OCRParam, newConfig?: Partial<Settings>) {
@@ -130,14 +130,10 @@ export class Ocr {
 
     const { image, qualities_detector } = param;
 
-    if (!existsSync(image)) {
-      throw new FileNotFoundError(image);
-    }
-
     const formData = new FormData();
     formData.set(
       "image",
-      new Blob([readFileSync(image) as any], { type: "image/jpeg" }),
+      await getImageBlob(image),
       "filename.jpg"
     );
 
