@@ -4,7 +4,7 @@
  * @example "berlaku_hingga" -> "berlakuHingga"
  */
 function snakeToCamel(str: string): string {
-  return str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
+  return String(str).replaceAll(/_([a-z])/g, (_, letter) => letter.toUpperCase());
 }
 
 /**

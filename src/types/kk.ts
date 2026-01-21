@@ -13,37 +13,37 @@ type FieldValue = {
 // Regular KK fields
 type KK_FIELDS =
   | "alamat"
-  | "desaKelurahan"
-  | "kabupatenKota"
+  | "desa_kelurahan"
+  | "kabupaten_kota"
   | "kecamatan"
-  | "kodePos"
-  | "namaKepalaKeluarga"
-  | "nomorBlanko"
-  | "nomorKk"
+  | "kode_pos"
+  | "nama_kepala_keluarga"
+  | "nomor_blanko"
+  | "nomor_kk"
   | "provinsi"
-  | "rtRw"
-  | "tanggalDikeluarkan";
+  | "rt_rw"
+  | "tanggal_dikeluarkan";
 
 // Table fields (for family members)
 type KK_TABLE_FIELDS =
   | "agama"
-  | "golonganDarah"
-  | "jenisKelamin"
-  | "jenisPekerjaan"
+  | "golongan_darah"
+  | "jenis_kelamin"
+  | "jenis_pekerjaan"
   | "kewarganegaraan"
-  | "namaAyah"
-  | "namaIbu"
-  | "namaLengkap"
+  | "nama_ayah"
+  | "nama_ibu"
+  | "nama_lengkap"
   | "nik"
   | "no"
-  | "noKitasKitap"
-  | "noPaspor"
+  | "no_kitas_kitap"
+  | "no_paspor"
   | "pendidikan"
-  | "statusHubunganDalamKeluarga"
-  | "statusPerkawinan"
-  | "tanggalLahir"
-  | "tanggalPerkawinan"
-  | "tempatLahir";
+  | "status_hubungan_dalam_keluarga"
+  | "status_perkawinan"
+  | "tanggal_lahir"
+  | "tanggal_perkawinan"
+  | "tempat_lahir";
 
 // Table row type (each family member)
 type KKTableRow = Partial<Record<KK_TABLE_FIELDS, FieldValue>> & {

@@ -1,30 +1,28 @@
 // Receipt has regular fields and an items array
 // Each field has confidence/value structure similar to KTP
 
-type FieldValue = {
-  confidence?: number;
-  confidenceText?: string;
-  value?: string;
-  valueOriginal?: string;
-  polygon?: number[][];
-  pageIndex?: number;
-};
+import type { FieldValue } from "./common";
 
 type RECEIPT_FIELDS =
-  | "merchantName"
-  | "merchantAddress"
-  | "receiptDate"
-  | "receiptTime"
-  | "subTotalAmount"
-  | "taxAmount"
-  | "tipAmount"
-  | "totalAmount";
+  | "merchant_name"
+  | "merchant_place"
+  | "merchant_address"
+  | "merchant_phone_number"
+  | "receipt_date"
+  | "receipt_time"
+  | "receipt_number"
+  | "sub_total_amount"
+  | "currency"
+  | "payment_product"
+  | "tax_amount"
+  | "tip_amount"
+  | "total_amount";
 
 type ITEM_FIELDS =
-  | "itemName"
-  | "itemQuantity"
-  | "itemTotalPrice"
-  | "itemProductCode";
+  | "item_name"
+  | "item_quantity"
+  | "item_total_price"
+  | "item_product_code";
 
 // Receipt item row type
 type ReceiptItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {

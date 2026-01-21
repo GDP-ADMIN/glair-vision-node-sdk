@@ -1,17 +1,19 @@
 // Singapore Family Pass has regular text fields and image fields
 // Each field has confidence/value structure similar to KTP
 
+import { FieldValue } from "./common";
+
 type FAMILY_PASS_FIELDS =
   | "address"
-  | "cardNumber"
-  | "cardType"
-  | "dateOfBirth"
-  | "expiryDate"
+  | "card_number"
+  | "card_type"
+  | "date_of_birth"
+  | "expiry_date"
   | "fin"
-  | "issueDate"
+  | "issue_date"
   | "name"
   | "nationality"
-  | "passStatus"
+  | "pass_status"
   | "sex";
 
 export type SingaporeFamilyPass = {
@@ -19,15 +21,8 @@ export type SingaporeFamilyPass = {
     photo?: string;
     [key: string]: string | undefined;
   };
-  read?: Partial<Record<FAMILY_PASS_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
-    [key: string]: { 
-      confidence?: number;
-      confidenceText?: string;
-      value?: string;
-      valueOriginal?: string;
-      polygon?: number[][];
-      pageIndex?: number;
-    } | undefined;
+  read?: Partial<Record<FAMILY_PASS_FIELDS, FieldValue>> & {
+    [key: string]: FieldValue | undefined;
   };
   status?: string;
   reason?: string;

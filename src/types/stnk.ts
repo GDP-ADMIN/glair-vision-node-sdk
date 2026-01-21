@@ -1,38 +1,30 @@
 // STNK-v2 has a nested structure with multiple pages/sections
 // Each page contains fields with confidence/value structure
 
-type FieldValue = {
-  confidence?: number;
-  confidenceText?: string;
-  value?: string;
-  valueOriginal?: string;
-  polygon?: number[][];
-  pageIndex?: number;
-};
-
+import type { FieldValue } from "./common";
 // Halaman STNK page fields
 type HalamanStnkFields = Partial<Record<
   | "alamat"
-  | "bahanBakar"
-  | "berlakuSampai"
-  | "isiSilinder"
+  | "bahan_bakar"
+  | "berlaku_sampai"
+  | "isi_silinder"
   | "jenis"
-  | "kodeLokasi"
+  | "kode_lokasi"
   | "merk"
   | "model"
-  | "namaPemilik"
-  | "nomorBpkb"
-  | "nomorIdentitasPemilik"
-  | "nomorMesin"
-  | "nomorRangka"
-  | "nomorRegistrasi"
-  | "nomorStnk"
-  | "nomorUrutPendaftaran"
-  | "poldaPenerbitan"
+  | "nama_pemilik"
+  | "nomor_bpkb"
+  | "nomor_identitas_pemilik"
+  | "nomor_mesin"
+  | "nomor_rangka"
+  | "nomor_registrasi"
+  | "nomor_stnk"
+  | "nomor_urut_pendaftaran"
+  | "polda_penerbitan"
   | "tahunPembuatan"
-  | "tahunRegistrasi"
-  | "tanggalPenerbitan"
-  | "tempatPenerbitan"
+  | "tahun_registrasi"
+  | "tanggal_penerbitan"
+  | "tempat_penerbitan"
   | "tipe"
   | "warna"
   | "warnaTnkb",
@@ -44,31 +36,31 @@ type HalamanStnkFields = Partial<Record<
 // Halaman Pajak Tahunan page fields
 type HalamanPajakTahunanFields = Partial<Record<
   | "alamat"
-  | "bahanBakar"
-  | "berlakuSampai"
-  | "ditetapkanTanggal"
+  | "bahan_bakar"
+  | "berlaku_sampai"
+  | "ditetapkan_tanggal"
   | "ident"
-  | "isiSilinder"
+  | "isi_silinder"
   | "jenis"
-  | "jumlahSumbu"
-  | "kepemilikanKe"
-  | "kodeNjkb"
+  | "jumlah_sumbu"
+  | "kepemilikan_ke"
+  | "kode_njkb"
   | "merk"
   | "model"
-  | "namaPemilik"
-  | "nomorBpkb"
-  | "nomorIdentitasPemilik"
-  | "nomorMesin"
-  | "nomorPajakTahunan"
-  | "nomorRangka"
-  | "nomorRegistrasi"
-  | "nomorRegistrasiLama"
-  | "samsatProvinsi"
-  | "tahunPembuatan"
-  | "tahunRegistrasi"
+  | "nama_pemilik"
+  | "nomor_bpkb"
+  | "nomor_identitas_pemilik"
+  | "nomor_mesin"
+  | "nomor_pajak_tahunan"
+  | "nomor_rangka"
+  | "nomor_registrasi"
+  | "nomor_registrasi_lama"
+  | "samsat_provinsi"
+  | "tahun_pembuatan"
+  | "tahun_registrasi"
   | "tipe"
   | "warna"
-  | "warnaTnkb",
+  | "warna_tnkb",
   FieldValue
 >> & {
   [key: string]: FieldValue | undefined;

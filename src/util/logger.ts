@@ -79,6 +79,7 @@ class Logger {
       try {
         return JSON.stringify(obj);
       } catch (e) {
+        console.error(e);
         // Failed to convert to JSON, log the object directly.
         return obj;
       }

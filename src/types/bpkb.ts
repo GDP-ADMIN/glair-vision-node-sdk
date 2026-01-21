@@ -1,21 +1,13 @@
+import type { FieldValue } from "./common";
 // BPKB-v2 has a nested structure with multiple pages/sections
 // Each page contains fields with confidence/value structure
 
-type FieldValue = {
-  confidence?: number;
-  confidenceText?: string;
-  value?: string;
-  valueOriginal?: string;
-  polygon?: number[][];
-  pageIndex?: number;
-};
-
 // Dokumen Registrasi Pertama page fields
 type DokumenRegistrasiPertamaFields = Partial<Record<
-  | "namaApm"
-  | "nomorFaktur"
-  | "nomorFormAbc"
-  | "tanggalFaktur",
+  | "nama_apm"
+  | "nomor_faktur"
+  | "nomor_form_abc"
+  | "tanggal_faktur",
   FieldValue
 >> & {
   [key: string]: FieldValue | undefined;
@@ -23,8 +15,8 @@ type DokumenRegistrasiPertamaFields = Partial<Record<
 
 // Halaman Terakhir page fields
 type HalamanTerakhirFields = Partial<Record<
-  | "diterbitkanOleh"
-  | "noRegister",
+  | "diterbitkan_oleh"
+  | "no_register",
   FieldValue
 >> & {
   [key: string]: FieldValue | undefined;
@@ -32,20 +24,20 @@ type HalamanTerakhirFields = Partial<Record<
 
 // Identitas Kendaraan page fields
 type IdentitasKendaraanFields = Partial<Record<
-  | "bahanBakar"
-  | "isiSilinder"
+  | "bahan_bakar"
+  | "isi_silinder"
   | "jenis"
-  | "jumlahRoda"
-  | "jumlahSumbu"
+  | "jumlah_roda"
+  | "jumlah_sumbu"
   | "merk"
   | "model"
-  | "nomorMesin"
-  | "nomorRangka"
-  | "nomorRegistrasi"
-  | "tahunPembuatan"
+  | "nomor_mesin"
+  | "nomor_rangka"
+  | "nomor_registrasi"
+  | "tahun_pembuatan"
   | "type"
   | "warna"
-  | "warnaTnkb",
+  | "warna_tnkb",
   FieldValue
 >> & {
   [key: string]: FieldValue | undefined;
@@ -54,15 +46,15 @@ type IdentitasKendaraanFields = Partial<Record<
 // Identitas Pemilik page fields
 type IdentitasPemilikFields = Partial<Record<
   | "alamat"
-  | "alamatEmail"
+  | "alamat_email"
   | "dikeluarkan"
-  | "namaPemilik"
-  | "noKtpTdp"
-  | "noTelepon"
-  | "nomorBpkb"
-  | "padaTanggal"
+  | "nama_pemilik"
+  | "no_ktp_tdp"
+  | "no_telepon"
+  | "nomor_bpkb"
+  | "pada_tanggal"
   | "pekerjaan"
-  | "stempelNomorBpkb",
+  | "stempel_nomor_bpkb",
   FieldValue
 >> & {
   [key: string]: FieldValue | undefined;

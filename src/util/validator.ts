@@ -4,16 +4,17 @@ export function isValidURL(val: string) {
 
     return true;
   } catch (err) {
+    console.error(err);
     return false;
   }
 }
 
 export function isDefined(val: unknown) {
-  return typeof val !== "undefined";
+  return val !== undefined;
 }
 
 export function isString(val: unknown) {
-  return typeof val === "string" || val instanceof String;
+  return typeof val === "string";
 }
 
 export function runSchemaValidation(

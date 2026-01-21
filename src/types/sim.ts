@@ -1,18 +1,19 @@
 // SIM has regular text fields and image fields
 // Each field has confidence/value structure similar to KTP
 
+import type { FieldValue } from "./common";
 type SIM_FIELDS =
   | "alamat"
   | "berlaku"
-  | "golonganDarah"
-  | "jenisKelamin"
+  | "golongan_darah"
+  | "jenis_kelamin"
   | "nama"
-  | "nomorSim"
+  | "nomor_sim"
   | "pekerjaan"
-  | "tanggalLahir"
-  | "tempatLahir"
+  | "tanggal_lahir"
+  | "tempat_lahir"
   | "tinggi"
-  | "tipeSim"
+  | "tipe_sim"
   | "wilayah";
 
 export type SIM = {
@@ -21,15 +22,8 @@ export type SIM = {
     tandaTangan?: string;
     [key: string]: string | undefined;
   };
-  read?: Partial<Record<SIM_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
-    [key: string]: { 
-      confidence?: number;
-      confidenceText?: string;
-      value?: string;
-      valueOriginal?: string;
-      polygon?: number[][];
-      pageIndex?: number;
-    } | undefined;
+  read?: Partial<Record<SIM_FIELDS, FieldValue>> & {
+    [key: string]: FieldValue | undefined;
   };
   status?: string;
   reason?: string;

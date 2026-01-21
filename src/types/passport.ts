@@ -1,33 +1,27 @@
 // Passport has regular text fields
 // Each field has confidence/value structure similar to KTP
 
+import type { FieldValue } from "./common";
 type PASSPORT_FIELDS =
-  | "birthDate"
-  | "birthDateHash"
+  | "birth_date"
+  | "birth_date_hash"
   | "country"
-  | "docNumber"
-  | "docNumberHash"
-  | "documentType"
-  | "expiryDate"
-  | "expiryDateHash"
-  | "finalHash"
+  | "doc_number"
+  | "doc_number_hash"
+  | "document_type"
+  | "expiry_date"
+  | "expiry_date_hash"
+  | "final_hash"
   | "name"
   | "nationality"
-  | "optionalData"
-  | "optionalDataHash"
+  | "optional_data"
+  | "optional_data_hash"
   | "sex"
   | "surname";
 
 export type Passport = {
-  read?: Partial<Record<PASSPORT_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
-    [key: string]: { 
-      confidence?: number;
-      confidenceText?: string;
-      value?: string;
-      valueOriginal?: string;
-      polygon?: number[][];
-      pageIndex?: number;
-    } | undefined;
+  read?: Partial<Record<PASSPORT_FIELDS, FieldValue>> & {
+    [key: string]: FieldValue | undefined;
   };
   status?: string;
   reason?: string;

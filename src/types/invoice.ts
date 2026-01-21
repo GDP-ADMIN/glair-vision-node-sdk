@@ -1,43 +1,35 @@
 // Invoice has regular fields and an items array
 // Each field has confidence/value structure similar to KTP
 
-type FieldValue = {
-  confidence?: number;
-  confidenceText?: string;
-  value?: string;
-  valueOriginal?: string;
-  polygon?: number[][];
-  pageIndex?: number;
-};
-
+import type { FieldValue } from "./common";
 type INVOICE_FIELDS =
-  | "invoiceNumber"
-  | "invoiceDate"
-  | "invoiceDueDate"
-  | "purchaseOrder"
-  | "vendorName"
-  | "vendorTaxId"
-  | "vendorAddress"
-  | "customerName"
-  | "customerTaxId"
-  | "customerAddress"
-  | "shippingAddress"
-  | "shippingAddressRecipient"
-  | "paymentTerm"
-  | "subTotalAmount"
-  | "invoiceTotalTax"
-  | "invoiceTotal"
-  | "remittanceAddress"
-  | "remittanceAddressRecipient"
+  | "invoice_number"
+  | "invoice_date"
+  | "invoice_due_date"
+  | "purchase_order"
+  | "vendor_name"
+  | "vendor_tax_id"
+  | "vendor_address"
+  | "customer_name"
+  | "customer_tax_id"
+  | "customer_address"
+  | "shipping_address"
+  | "shipping_address_recipient"
+  | "payment_term"
+  | "sub_total_amount"
+  | "invoice_total_tax"
+  | "invoice_total"
+  | "remittance_address"
+  | "remittance_address_recipient"
   | "currency";
 
 type ITEM_FIELDS =
-  | "itemName"
-  | "itemQuantity"
-  | "itemPrice"
-  | "itemUnitPrice"
-  | "itemProductCode"
-  | "itemUnit";
+  | "item_name"
+  | "item_quantity"
+  | "item_price"
+  | "item_unit_price"
+  | "item_product_code"
+  | "item_unit";
 
 // Invoice item row type
 type InvoiceItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {

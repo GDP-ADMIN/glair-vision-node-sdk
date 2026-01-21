@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import { Config, Settings } from "./config";
 
@@ -6,7 +6,6 @@ import { KtpSessions } from "./sessions/ktpSessions";
 import { NPWPSessions } from "./sessions/npwpSessions";
 
 import { logInfo } from "../util/logger";
-import { normalizeKeys } from "../util/normalize";
 import { isDefined, runSchemaValidation } from "../util/validator";
 import { visionFetch } from "../util/visionFetch";
 
@@ -148,16 +147,13 @@ export class Ocr {
     };
 
     const config = this.config.getConfig(newConfig);
-    const response = await visionFetch(
+    return visionFetch(
       config,
       qualities_detector
         ? `ocr/:version/${endpoint}/qualities`
         : `ocr/:version/${endpoint}`,
       req
     );
-    
-    // Normalize snake_case keys to camelCase for TypeScript consistency
-    return normalizeKeys<T>(response);
   }
 
   validateOCRParam(param: OCRParam) {
