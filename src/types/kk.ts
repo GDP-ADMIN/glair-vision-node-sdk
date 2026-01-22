@@ -1,14 +1,6 @@
 // KK-v2 has regular fields and a table array containing family member records
 // Each field has confidence/value structure similar to KTP
-
-type FieldValue = {
-  confidence?: number;
-  confidenceText?: string;
-  value?: string;
-  valueOriginal?: string;
-  polygon?: number[][];
-  pageIndex?: number;
-};
+import type { FieldValue } from "./common";
 
 type KK_FIELDS =
   | "alamat"

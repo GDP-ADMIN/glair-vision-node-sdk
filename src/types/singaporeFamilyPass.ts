@@ -1,7 +1,7 @@
 // Singapore Family Pass has regular text fields and image fields
 // Each field has confidence/value structure similar to KTP
 
-import { FieldValue } from "./common";
+import type { FieldValue } from "./common";
 
 type FAMILY_PASS_FIELDS =
   | "address"

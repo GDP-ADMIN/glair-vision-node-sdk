@@ -1,18 +1,11 @@
 // NPWP has regular text fields
 // Each field has confidence/value structure similar to KTP
-
+import type { FieldValue } from "./common";
 type NPWP_FIELDS = "no_npwp" | "nik" | "nama" | "alamat";
 
 export type NPWP = {
-  read?: Partial<Record<NPWP_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
-    [key: string]: { 
-      confidence?: number;
-      confidenceText?: string;
-      value?: string;
-      valueOriginal?: string;
-      polygon?: number[][];
-      pageIndex?: number;
-    } | undefined;
+  read?: Partial<Record<NPWP_FIELDS, FieldValue>> & {
+    [key: string]: FieldValue | undefined;
   };
   status?: string;
   reason?: string;

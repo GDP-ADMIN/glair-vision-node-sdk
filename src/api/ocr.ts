@@ -111,11 +111,7 @@ export class Ocr {
 
     async sim(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - SIM");
-    return this.fetchOCR<SIM>(
-      param,
-      "sim",
-      newConfig
-    );
+    return this.fetchOCR<SIM>(param,"sim",newConfig);
   }
 
   private async fetchOCR<T>(

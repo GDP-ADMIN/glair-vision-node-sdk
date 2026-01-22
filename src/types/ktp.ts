@@ -1,3 +1,5 @@
+import type { FieldValue } from "./common";
+
 export type KTP = {
   condition?: Partial<Record<KTP_CONDITIONS, boolean>> & {
     [key: string]: boolean | undefined;
@@ -7,14 +9,9 @@ export type KTP = {
     sign?: string;
     [key: string]: string | undefined;
   };
-  read?: Partial<Record<KTP_FIELDS, { confidence?: number; confidenceText?: string; value?: string; valueOriginal?: string; polygon?: number[][]; pageIndex?: number }>> & {
+  read?: Partial<Record<KTP_FIELDS, FieldValue>> & {
     [key: string]: { 
-      confidence?: number;
-      confidenceText?: string;
-      value?: string;
-      valueOriginal?: string;
-      polygon?: number[][];
-      pageIndex?: number;
+      [key: string]: FieldValue | undefined;
     } | undefined;
   };
   status?: string;
