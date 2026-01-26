@@ -12,10 +12,10 @@
     "planogram",
     "paperless"
   ],
-  "homepage": "https://github.com/glair-ai/glair-vision-node#readme",
+  "homepage": "https://github.com/GDP-ADMIN/glair-vision-node-sdk#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/glair-ai/glair-vision-node.git"
+    "url": "https://github.com/GDP-ADMIN/glair-vision-node-sdk.git"
   },
   "type": "module",
   "main": "lib/index.js",
