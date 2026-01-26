@@ -1,18 +1,9 @@
-export type SingaporeWorkPermit = {
-  images: {
-    photo: string;
-  };
-  read: {
-    [key in FAMILY_WORK_PERMIT]: {
-      confidence: number;
-      value: string;
-    };
-  };
-  reason: string;
-  status: string;
-};
+// Singapore Work Permit has regular text fields and image fields
+// Each field has confidence/value structure similar to KTP
 
-type FAMILY_WORK_PERMIT =
+import type { FieldValue } from "./common";
+
+type WORK_PERMIT_FIELDS =
   | "card_number"
   | "card_type"
   | "date_of_apply"
@@ -21,10 +12,23 @@ type FAMILY_WORK_PERMIT =
   | "date_of_issue"
   | "employer"
   | "fin"
-  | "location"
+  | "location_work"
   | "name"
   | "nationality"
   | "occupation"
   | "sector"
   | "sex"
   | "work_permit_no";
+
+export type SingaporeWorkPermit = {
+  images?: {
+    photo?: string;
+    [key: string]: string | undefined;
+  };
+  read?: Partial<Record<WORK_PERMIT_FIELDS, FieldValue>> & {
+    [key: string]: FieldValue | undefined;
+  };
+  status?: string;
+  reason?: string;
+  [key: string]: unknown;
+};

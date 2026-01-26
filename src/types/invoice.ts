@@ -1,21 +1,7 @@
-export type Invoice = {
-  read: {
-    [key in INVOICE_FIELDS]: {
-      confidence: number;
-      value: string;
-    };
-  } & {
-    items: {
-      [key in ITEM_FIELDS]: {
-        confidence: number;
-        value: string;
-      };
-    }[];
-  };
-  status: string;
-  reason?: string;
-};
+// Invoice has regular fields and an items array
+// Each field has confidence/value structure similar to KTP
 
+import type { FieldValue } from "./common";
 type INVOICE_FIELDS =
   | "invoice_number"
   | "invoice_date"
@@ -44,3 +30,18 @@ type ITEM_FIELDS =
   | "item_unit_price"
   | "item_product_code"
   | "item_unit";
+
+// Invoice item row type
+type InvoiceItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {
+  [key: string]: FieldValue | undefined;
+};
+
+export type Invoice = {
+  read?: Partial<Record<INVOICE_FIELDS, FieldValue>> & {
+    items?: InvoiceItem[];
+    [key: string]: FieldValue | InvoiceItem[] | undefined;
+  };
+  status?: string;
+  reason?: string;
+  [key: string]: unknown;
+};

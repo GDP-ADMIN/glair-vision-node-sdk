@@ -1,5 +1,3 @@
-import { existsSync, readFileSync } from "fs";
-
 import { Config, Settings } from "./config";
 
 import { KtpSessions } from "./sessions/ktpSessions";
@@ -9,18 +7,25 @@ import { logInfo } from "../util/logger";
 import { isDefined, runSchemaValidation } from "../util/validator";
 import { visionFetch } from "../util/visionFetch";
 
-import { FileNotFoundError } from "../error/file-not-found";
 
 import type { KTP } from "../types/ktp";
 import type { NPWP } from "../types/npwp";
 import type { GeneralDocument } from "../types/generalDocument";
+import type { BPKB } from "../types/bpkb";
+import type { KK } from "../types/kk";
+import type { STNK } from "../types/stnk";
+import type { Passport } from "../types/passport";
 import { Invoice } from "../types/invoice";
 import { Receipt } from "../types/receipt";
 import { SingaporeNRIC } from "../types/singaporeNRIC";
 import { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
 import { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
+import { SIM } from "../types/sim";
+import { Plate } from "../types/plate";
+import { ImageSource } from "../types/image";
+import { getImageBlob } from "../util/image";
 
-type OCRParam = { image: string; qualities_detector?: boolean };
+type OCRParam = { image: ImageSource; qualities_detector?: boolean };
 
 export class Ocr {
   readonly ktpSessions: KtpSessions;
@@ -43,27 +48,27 @@ export class Ocr {
 
   async kk(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - KK");
-    return this.fetchOCR<any>(param, "kk", newConfig);
+    return this.fetchOCR<KK>(param, "kk", newConfig);
   }
 
   async stnk(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - STNK");
-    return this.fetchOCR<any>(param, "stnk", newConfig);
+    return this.fetchOCR<STNK>(param, "stnk", newConfig);
   }
 
   async bpkb(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - BPKB");
-    return this.fetchOCR<any>(param, "bpkb", newConfig);
+    return this.fetchOCR<BPKB>(param, "bpkb", newConfig);
   }
 
   async passport(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Passport");
-    return this.fetchOCR<any>(param, "passport", newConfig);
+    return this.fetchOCR<Passport>(param, "passport", newConfig);
   }
 
   async licensePlate(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - License Plate");
-    return this.fetchOCR<any>(param, "plate", newConfig);
+    return this.fetchOCR<Plate>(param, "plate", newConfig);
   }
 
   async generalDocument(param: OCRParam, newConfig?: Partial<Settings>) {
@@ -104,7 +109,12 @@ export class Ocr {
     );
   }
 
-  private fetchOCR<T>(
+    async sim(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - SIM");
+    return this.fetchOCR<SIM>(param,"sim",newConfig);
+  }
+
+  private async fetchOCR<T>(
     param: OCRParam,
     endpoint: string,
     newConfig?: Partial<Settings>
@@ -116,14 +126,10 @@ export class Ocr {
 
     const { image, qualities_detector } = param;
 
-    if (!existsSync(image)) {
-      throw new FileNotFoundError(image);
-    }
-
     const formData = new FormData();
     formData.set(
       "image",
-      new Blob([readFileSync(image)], { type: "image/jpeg" }),
+      await getImageBlob(image),
       "filename.jpg"
     );
 

@@ -1,27 +1,19 @@
-export type Receipt = {
-  read: {
-    [key in RECEIPT_FIELDS]: {
-      confidence: number;
-      value: string;
-    };
-  } & {
-    items: {
-      [key in ITEM_FIELDS]: {
-        confidence: number;
-        value: string;
-      };
-    }[];
-  };
-  status: string;
-  reason?: string;
-};
+// Receipt has regular fields and an items array
+// Each field has confidence/value structure similar to KTP
+
+import type { FieldValue } from "./common";
 
 type RECEIPT_FIELDS =
   | "merchant_name"
+  | "merchant_place"
   | "merchant_address"
+  | "merchant_phone_number"
   | "receipt_date"
   | "receipt_time"
+  | "receipt_number"
   | "sub_total_amount"
+  | "currency"
+  | "payment_product"
   | "tax_amount"
   | "tip_amount"
   | "total_amount";
@@ -31,3 +23,18 @@ type ITEM_FIELDS =
   | "item_quantity"
   | "item_total_price"
   | "item_product_code";
+
+// Receipt item row type
+type ReceiptItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {
+  [key: string]: FieldValue | undefined;
+};
+
+export type Receipt = {
+  read?: Partial<Record<RECEIPT_FIELDS, FieldValue>> & {
+    items?: ReceiptItem[];
+    [key: string]: FieldValue | ReceiptItem[] | undefined;
+  };
+  status?: string;
+  reason?: string;
+  [key: string]: unknown;
+};

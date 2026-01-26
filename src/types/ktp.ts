@@ -1,42 +1,47 @@
+import type { FieldValue } from "./common";
+
 export type KTP = {
-  condition: {
-    [key in KTP_CONDITIONS]: boolean;
+  condition?: Partial<Record<KTP_CONDITIONS, boolean>> & {
+    [key: string]: boolean | undefined;
   };
-  images: {
-    photo: string;
-    sign: string;
+  images?: {
+    photo?: string;
+    sign?: string;
+    [key: string]: string | undefined;
   };
-  read: {
-    [key in KTP_FIELDS]: {
-      confidence: number;
-      value: string;
-    };
+  read?: Partial<Record<KTP_FIELDS, FieldValue>> & {
+    [key: string]: { 
+      [key: string]: FieldValue | undefined;
+    } | undefined;
   };
-  status: string;
-  form?: {
-    [key in KTP_FIELDS]: string;
+  status?: string;
+  form?: Partial<Record<KTP_FIELDS, string>> & {
+    [key: string]: string | undefined;
   };
   reason?: string;
+  [key: string]: unknown;
 };
 
 type KTP_FIELDS =
   | "agama"
   | "alamat"
-  | "berlakuHingga"
-  | "golonganDarah"
-  | "jenisKelamin"
+  | "berlaku_hingga"
+  | "golongan_darah"
+  | "jenis_kelamin"
+  | "foto"
   | "kecamatan"
-  | "kelurahanDesa"
+  | "kelurahan_desa"
   | "kewarganegaraan"
-  | "kotaKabupaten"
+  | "kota_kabupaten"
   | "nama"
   | "nik"
   | "pekerjaan"
   | "provinsi"
-  | "rtRw"
-  | "statusPerkawinan"
-  | "tanggalLahir"
-  | "tempatLahir";
+  | "rt_rw"
+  | "status_perkawinan"
+  | "tanggal_lahir"
+  | "tempat_lahir"
+  | "tanda_tangan";
 
 type KTP_CONDITIONS =
   | "is_blurred"
