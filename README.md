@@ -228,6 +228,115 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
+### Bank Statement
+
+```ts
+const resp = await vision.ocr
+  .bankStatement({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+console.log(resp);
+```
+
+## BSTK
+
+```ts
+const resp = await vision.ocr
+  .bstk({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Diploma
+
+```ts
+const resp = await vision.ocr
+  .diploma({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Financial Statement
+
+```ts
+const resp = await vision.ocr
+  .financialStatement({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## KITAS / KITAP
+
+```ts
+const resp = await vision.ocr
+  .kitasKitap({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Phone Packaging
+
+```ts
+const resp = await vision.ocr
+  .phonePackaging({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## SKPR
+
+```ts
+const resp = await vision.ocr
+  .skpr({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## SPK
+
+```ts
+const resp = await vision.ocr
+  .spk({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Qualities
+
+```ts
+const resp = await vision.ocr
+  .qualities({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Tax Invoice
+
+```ts
+const resp = await vision.ocr
+  .taxInvoice({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
+## Transcript
+
+```ts
+const resp = await vision.ocr
+  .transcript({ image: "/path/to/image.jpg" })
+  .catch((err) => console.error(err));
+
+console.log(resp);
+```
+
 ## Face Biometric
 
 ### Face Matching

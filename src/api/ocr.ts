@@ -22,6 +22,17 @@ import { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
 import { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
 import { SIM } from "../types/sim";
 import { Plate } from "../types/plate";
+import { BankStatement } from "../types/bankStatement";
+import type { BSTK } from "../types/bstk";
+import type { Diploma } from "../types/diploma";
+import type { FinancialStatement } from "../types/financialStatement";
+import { KitasKitap } from "../types/kitasKitap";
+import type { PhonePackaging } from "../types/phonePackaging";
+import type { SKPR } from "../types/skpr";
+import type { SPK } from "../types/spk";
+import type { Qualities } from "../types/qualities";
+import type { TaxInvoice } from "../types/taxInvoice";
+import type { Transcript } from "../types/transcript";
 import { ImageSource } from "../types/image";
 import { getImageBlob } from "../util/image";
 
@@ -112,6 +123,61 @@ export class Ocr {
     async sim(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - SIM");
     return this.fetchOCR<SIM>(param,"sim",newConfig);
+  }
+
+  async bankStatement(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Bank Statement");
+    return this.fetchOCR<BankStatement>(param, "bank-statement", newConfig);
+  }
+
+  async bstk(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - BSTK");
+    return this.fetchOCR<BSTK>(param, "bstk", newConfig);
+  }
+
+  async diploma(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Diploma");
+    return this.fetchOCR<Diploma>(param, "diploma", newConfig);
+  }
+
+  async financialStatement(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Financial Statement");
+    return this.fetchOCR<FinancialStatement>(param, "financial-statement", newConfig);
+  }
+
+  async kitasKitap(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - KITAS/KITAP");
+    return this.fetchOCR<KitasKitap>(param, "kitas-kitap", newConfig);
+  }
+
+  async phonePackaging(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Phone Packaging");
+    return this.fetchOCR<PhonePackaging>(param, "phone-packaging", newConfig);
+  }
+
+  async skpr(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - SKPR");
+    return this.fetchOCR<SKPR>(param, "skpr", newConfig);
+  }
+
+  async spk(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - SPK");
+    return this.fetchOCR<SPK>(param, "spk", newConfig);
+  }
+
+  async qualities(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Qualities");
+    return this.fetchOCR<Qualities>(param, "qualities", newConfig);
+  }
+
+  async taxInvoice(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Tax Invoice");
+    return this.fetchOCR<TaxInvoice>(param, "tax-invoice", newConfig);
+  }
+
+  async transcript(param: OCRParam, newConfig?: Partial<Settings>) {
+    logInfo("OCR - Transcript");
+    return this.fetchOCR<Transcript>(param, "transcript", newConfig);
   }
 
   private async fetchOCR<T>(
