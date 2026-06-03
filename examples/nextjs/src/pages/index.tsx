@@ -170,6 +170,51 @@ export default function Home() {
               Sample demo to integrate NPWP OCR using NPWP Sessions.
             </p>
           </Link>
+
+          <Link
+            href="/financial-statement"
+            className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          >
+            <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
+              Financial Statement OCR<span>-&gt;</span>
+            </h2>
+            <p
+              className={`${inter.className} m-auto lg:m-0 max-w-[30ch] text-sm opacity-50`}
+            >
+              Sample demo to integrate Financial Statement OCR using GLAIR Web Components and
+              GLAIR Vision NodeJS SDK.
+            </p>
+          </Link>
+
+          <Link
+            href="/qualities"
+            className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          >
+            <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
+              Check Qualities<span>-&gt;</span>
+            </h2>
+            <p
+              className={`${inter.className} m-auto lg:m-0 max-w-[30ch] text-sm opacity-50`}
+            >
+              Sample demo to integrate Check Qualities OCR using GLAIR Web Components and
+              GLAIR Vision NodeJS SDK.
+            </p>
+          </Link>
+
+          <Link
+            href="/general-document"
+            className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          >
+            <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
+              General Document OCR<span>-&gt;</span>
+            </h2>
+            <p
+              className={`${inter.className} m-auto lg:m-0 max-w-[30ch] text-sm opacity-50`}
+            >
+              Sample demo to integrate General Document OCR using GLAIR Web Components and
+              GLAIR Vision NodeJS SDK.
+            </p>
+          </Link>
         </div>
       </main>
     </>
