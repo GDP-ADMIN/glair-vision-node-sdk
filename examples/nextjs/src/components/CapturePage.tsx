@@ -19,12 +19,14 @@ export default function CapturePage({
   const webcam = useRef<GlairWebcamElmt>(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null); // tambah ini
 
   const handleClick = async () => {
     if (!webcam.current || !webcam.current.screenshot) return;
 
     try {
       setLoading(true);
+      setError(null); // reset error setiap klik
 
       const base64Sshot = await webcam.current.screenshot();
       const fetchSshot = await fetch(base64Sshot);
@@ -32,7 +34,6 @@ export default function CapturePage({
 
       const formData = new FormData();
       formData.append("image", blob);
-
       buildFormData?.(formData);
 
       const resp = await fetch(endpoint, {
@@ -40,7 +41,14 @@ export default function CapturePage({
         body: formData,
       });
 
+      if (!resp.ok) {
+        const errorBody = await resp.json();
+        throw new Error(JSON.stringify(errorBody));
+      }
+
       setResult(await resp.json());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
       setLoading(false);
     }
@@ -50,6 +58,14 @@ export default function CapturePage({
     return (
       <Container>
         <pre>{JSON.stringify(result, null, 2)}</pre>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <pre className="text-red-500">{error}</pre>
       </Container>
     );
   }
