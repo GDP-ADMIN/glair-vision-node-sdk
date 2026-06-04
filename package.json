@@ -1,7 +1,7 @@
 {
   "name": "@glair/vision",
   "license": "MIT",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "GLAIR Vision Node.js SDK",
   "keywords": [
     "glair",
