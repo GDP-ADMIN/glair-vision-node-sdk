@@ -15,18 +15,18 @@ import type { BPKB } from "../types/bpkb";
 import type { KK } from "../types/kk";
 import type { STNK } from "../types/stnk";
 import type { Passport } from "../types/passport";
-import { Invoice } from "../types/invoice";
-import { Receipt } from "../types/receipt";
-import { SingaporeNRIC } from "../types/singaporeNRIC";
-import { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
-import { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
-import { SIM } from "../types/sim";
-import { Plate } from "../types/plate";
-import { BankStatement } from "../types/bankStatement";
+import type { Invoice } from "../types/invoice";
+import type { Receipt } from "../types/receipt";
+import type { SingaporeNRIC } from "../types/singaporeNRIC";
+import type { SingaporeFamilyPass } from "../types/singaporeFamilyPass";
+import type { SingaporeWorkPermit } from "../types/singaporeWorkPermit";
+import type { SIM } from "../types/sim";
+import type { Plate } from "../types/plate";
+import type { BankStatement } from "../types/bankStatement";
 import type { BSTK } from "../types/bstk";
 import type { Diploma } from "../types/diploma";
 import type { FinancialStatement } from "../types/financialStatement";
-import { KitasKitap } from "../types/kitasKitap";
+import type { KitasKitap } from "../types/kitasKitap";
 import type { PhonePackaging } from "../types/phonePackaging";
 import type { SKPR } from "../types/skpr";
 import type { SPK } from "../types/spk";
@@ -207,11 +207,16 @@ export class Ocr {
     const config = this.config.getConfig(newConfig);
     return visionFetch(
       config,
-      qualities_detector
-        ? `ocr/:version/${endpoint}/qualities`
-        : `ocr/:version/${endpoint}`,
+      this.buildEndpoint(endpoint, qualities_detector),
       req
     );
+  }
+
+  private buildEndpoint(endpoint: string, qualities_detector?: boolean): string {
+    if (!qualities_detector || endpoint === "qualities") {
+      return `ocr/:version/${endpoint}`;
+    }
+    return `ocr/:version/${endpoint}/qualities`;
   }
 
   validateOCRParam(param: OCRParam) {
