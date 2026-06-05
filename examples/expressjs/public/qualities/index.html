@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>General Document</title>
+    <title>Check Qualities</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -55,7 +55,7 @@
       const formdata = new FormData();
       formdata.append("image", blob);
 
-      const response = await fetch("/general-document", {
+      const response = await fetch("/qualities", {
         method: "POST",
         body: formdata,
         redirect: "follow",
