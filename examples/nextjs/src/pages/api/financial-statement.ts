@@ -6,9 +6,9 @@ export const config = { api: { bodyParser: false } };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await apiHandler(req, res, (filePath, fields) =>
-    vision.faceBio.activeLiveness({
+    vision.ocr.financialStatement({
       image: filePath,
-      gestureCode: fields.gestureCode as string,
+      qualities_detector: fields.qualities_detector?.[0] === "true",
     })
   );
 }
