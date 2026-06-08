@@ -19,14 +19,14 @@ export default function CapturePage({
   const webcam = useRef<GlairWebcamElmt>(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null); // tambah ini
+  const [error, setError] = useState<string | null>(null);
 
   const handleClick = async () => {
     if (!webcam.current || !webcam.current.screenshot) return;
 
     try {
       setLoading(true);
-      setError(null); // reset error setiap klik
+      setError(null);
 
       const base64Sshot = await webcam.current.screenshot();
       const fetchSshot = await fetch(base64Sshot);
