@@ -24,7 +24,7 @@ export function validateSessionCreateParam(param: SessionCreateParam) {
       return "";
     },
     cancel_url: (val: any) => {
-      if (!isDefined(val) || (typeof val !== 'string' || !isValidURL(val))) {
+      if (!isDefined(val) || (typeof val !== 'string' || isValidURL(val))) {
         return "";
       }
 
