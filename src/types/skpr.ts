@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type SKPR_FIELDS =
+export type SKPR_FIELDS =
   | "debit_account_request_type"
   | "complete_name"
   | "id_card_number"
@@ -31,21 +31,21 @@ type SKPR_FIELDS =
   | "signing_date"
   | "signing_location";
 
-type BANK_ACCOUNT_DETAIL_FIELDS =
+export type BANK_ACCOUNT_DETAIL_FIELDS =
   | "bank_account_number"
   | "bank_account_owner_name";
 
-type POLICY_DETAIL_FIELDS =
+export type POLICY_DETAIL_FIELDS =
   | "policy_number"
   | "policyholder_name"
   | "relationship_with_policyholder";
 
-type BankAccountDetail =
+export type BankAccountDetail =
   Partial<Record<BANK_ACCOUNT_DETAIL_FIELDS, FieldValue>> & {
     [key: string]: FieldValue | undefined;
   };
 
-type PolicyDetail =
+export type PolicyDetail =
   Partial<Record<POLICY_DETAIL_FIELDS, FieldValue>> & {
     [key: string]: FieldValue | undefined;
   };

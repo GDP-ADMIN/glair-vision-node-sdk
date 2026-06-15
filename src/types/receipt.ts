@@ -3,7 +3,7 @@
 
 import type { FieldValue } from "./common";
 
-type RECEIPT_FIELDS =
+export type RECEIPT_FIELDS =
   | "merchant_name"
   | "merchant_place"
   | "merchant_address"
@@ -18,14 +18,14 @@ type RECEIPT_FIELDS =
   | "tip_amount"
   | "total_amount";
 
-type ITEM_FIELDS =
+export type RECEIPT_ITEM_FIELDS =
   | "item_name"
   | "item_quantity"
   | "item_total_price"
   | "item_product_code";
 
 // Receipt item row type
-type ReceiptItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {
+export type ReceiptItem = Partial<Record<RECEIPT_ITEM_FIELDS, FieldValue>> & {
   [key: string]: FieldValue | undefined;
 };
 

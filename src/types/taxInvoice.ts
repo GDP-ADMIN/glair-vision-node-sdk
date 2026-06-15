@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type TAX_INVOICE_FIELDS =
+export type TAX_INVOICE_FIELDS =
   | "nomor_faktur"
   | "nama_pengusaha"
   | "alamat_pengusaha"

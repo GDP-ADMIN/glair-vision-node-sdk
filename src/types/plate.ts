@@ -1,7 +1,7 @@
-type PLATE_FIELDS =
+export type PLATE_FIELDS =
   | "plates"
 
-type PLATE_VALUE = {
+export type PLATE_VALUE = {
   text?: string;
 }
 

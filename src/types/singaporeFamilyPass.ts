@@ -3,7 +3,7 @@
 
 import type { FieldValue } from "./common";
 
-type FAMILY_PASS_FIELDS =
+export type FAMILY_PASS_FIELDS =
   | "address"
   | "card_number"
   | "card_type"

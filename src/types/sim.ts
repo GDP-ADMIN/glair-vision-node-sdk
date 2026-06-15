@@ -2,7 +2,7 @@
 // Each field has confidence/value structure similar to KTP
 
 import type { FieldValue } from "./common";
-type SIM_FIELDS =
+export type SIM_FIELDS =
   | "alamat"
   | "berlaku"
   | "foto"

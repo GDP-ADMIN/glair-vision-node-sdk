@@ -3,7 +3,7 @@
 
 import type { FieldValue } from "./common";
 // Halaman STNK page fields
-type HalamanStnkFields = Partial<Record<
+export type HalamanStnkFields = Partial<Record<
   | "alamat"
   | "bahan_bakar"
   | "berlaku_sampai"
@@ -34,7 +34,7 @@ type HalamanStnkFields = Partial<Record<
 };
 
 // Halaman Pajak Tahunan page fields
-type HalamanPajakTahunanFields = Partial<Record<
+export type HalamanPajakTahunanFields = Partial<Record<
   | "alamat"
   | "bahan_bakar"
   | "berlaku_sampai"

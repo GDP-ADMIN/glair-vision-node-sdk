@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type PHONE_PACKAGING_FIELDS =
+export type PHONE_PACKAGING_FIELDS =
   | "serial_number"
   | "brand"
   | "handphone_type"

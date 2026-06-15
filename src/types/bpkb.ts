@@ -3,7 +3,7 @@ import type { FieldValue } from "./common";
 // Each page contains fields with confidence/value structure
 
 // Dokumen Registrasi Pertama page fields
-type DokumenRegistrasiPertamaFields = Partial<Record<
+export type DokumenRegistrasiPertamaFields = Partial<Record<
   | "nama_apm"
   | "nomor_faktur"
   | "nomor_form_abc"
@@ -14,7 +14,7 @@ type DokumenRegistrasiPertamaFields = Partial<Record<
 };
 
 // Halaman Terakhir page fields
-type HalamanTerakhirFields = Partial<Record<
+export type HalamanTerakhirFields = Partial<Record<
   | "diterbitkan_oleh"
   | "no_register",
   FieldValue
@@ -23,7 +23,7 @@ type HalamanTerakhirFields = Partial<Record<
 };
 
 // Identitas Kendaraan page fields
-type IdentitasKendaraanFields = Partial<Record<
+export type IdentitasKendaraanFields = Partial<Record<
   | "bahan_bakar"
   | "isi_silinder"
   | "jenis"
@@ -44,7 +44,7 @@ type IdentitasKendaraanFields = Partial<Record<
 };
 
 // Identitas Pemilik page fields
-type IdentitasPemilikFields = Partial<Record<
+export type IdentitasPemilikFields = Partial<Record<
   | "alamat"
   | "alamat_email"
   | "dikeluarkan"

@@ -2,7 +2,7 @@
 // Each field has confidence/value structure similar to KTP
 import type { FieldValue } from "./common";
 
-type KK_FIELDS =
+export type KK_FIELDS =
   | "alamat"
   | "desa_kelurahan"
   | "kabupaten_kota"
@@ -15,7 +15,7 @@ type KK_FIELDS =
   | "rt_rw"
   | "tanggal_dikeluarkan";
 
-type KK_TABLE_FIELDS =
+export type KK_TABLE_FIELDS =
   | "agama"
   | "golongan_darah"
   | "jenis_kelamin"
@@ -36,7 +36,7 @@ type KK_TABLE_FIELDS =
   | "tempat_lahir";
 
 // Table row type (each family member)
-type KKTableRow = Partial<Record<KK_TABLE_FIELDS, FieldValue>> & {
+export type KKTableRow = Partial<Record<KK_TABLE_FIELDS, FieldValue>> & {
   [key: string]: FieldValue | undefined;
 };
 

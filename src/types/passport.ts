@@ -2,7 +2,7 @@
 // Each field has confidence/value structure similar to KTP
 
 import type { FieldValue } from "./common";
-type PASSPORT_FIELDS =
+export type PASSPORT_FIELDS =
   | "birth_date"
   | "birth_date_hash"
   | "country"

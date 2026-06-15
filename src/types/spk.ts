@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type SPK_FIELDS =
+export type SPK_FIELDS =
   | "dealer_name"
   | "spk_dealer_number"
   | "spk_date"

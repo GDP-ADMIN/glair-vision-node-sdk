@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type BALANCE_SHEET_FIELDS =
+export type BALANCE_SHEET_FIELDS =
   | "assets"
   | "current_assets"
   | "cash_and_cash_equivalents"
@@ -108,7 +108,7 @@ type BALANCE_SHEET_FIELDS =
   | "current_profit_loss"
   | "other_comprehensive_incomes";
 
-type INCOME_STATEMENT_FIELDS =
+export type INCOME_STATEMENT_FIELDS =
   | "total_revenue"
   | "cost_of_sales_and_revenue"
   | "total_gross_profit_loss"
@@ -136,13 +136,13 @@ type INCOME_STATEMENT_FIELDS =
   | "total_comprehensive_income"
   | "earning_loss_per_share";
 
-type BalanceSheetRead = Partial<
+export type BalanceSheetRead = Partial<
   Record<BALANCE_SHEET_FIELDS, FieldValue>
 > & {
   [key: string]: FieldValue | undefined;
 };
 
-type IncomeStatementRead = Partial<
+export type IncomeStatementRead = Partial<
   Record<INCOME_STATEMENT_FIELDS, FieldValue>
 > & {
   [key: string]: FieldValue | undefined;

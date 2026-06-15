@@ -164,6 +164,23 @@ const customResp = await vision.ocr.ktp<MyKtpResponse>({ image: "/path/to/image.
 
 The generic parameter is available on all OCR methods and defaults to the document-specific type (e.g., `KTP`, `NPWP`, `KK`), so you only need to specify it when you want a custom return type.
 
+You can also import and extend the built-in types using intersection types and utility types:
+
+```ts
+import type { KTP, KTP_FIELDS, FieldValue } from "@glair/vision";
+
+// Add extra fields with intersection
+type CustomKTP = KTP & { custom_field?: string };
+
+// Override nested objects like `read` using Omit
+type CustomKTPRead = Partial<Record<KTP_FIELDS, FieldValue>> & {
+  client_field?: FieldValue;
+};
+type CustomKTPv2 = Omit<KTP, "read"> & { read: CustomKTPRead };
+
+const resp = await vision.ocr.ktp<CustomKTPv2>({ image: "/path/to/image.jpg" });
+```
+
 ### KTP
 
 ```ts

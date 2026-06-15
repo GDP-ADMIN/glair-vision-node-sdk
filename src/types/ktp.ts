@@ -22,7 +22,7 @@ export type KTP = {
   [key: string]: unknown;
 };
 
-type KTP_FIELDS =
+export type KTP_FIELDS =
   | "agama"
   | "alamat"
   | "berlaku_hingga"
@@ -43,7 +43,7 @@ type KTP_FIELDS =
   | "tempat_lahir"
   | "tanda_tangan";
 
-type KTP_CONDITIONS =
+export type KTP_CONDITIONS =
   | "is_blurred"
   | "is_bright"
   | "is_copy"

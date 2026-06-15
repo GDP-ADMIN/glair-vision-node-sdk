@@ -1,42 +1,42 @@
-type QualityBooleanField = {
+export type QualityBooleanField = {
   confidence?: number;
   value?: boolean;
 };
 
-type BlurField = QualityBooleanField & {
+export type BlurField = QualityBooleanField & {
   confidence_blur?: number;
 };
 
-type BrightField = QualityBooleanField & {
+export type BrightField = QualityBooleanField & {
   confidence_bright?: number;
 };
 
-type CropField = QualityBooleanField & {
+export type CropField = QualityBooleanField & {
   confidence_crop?: number;
 };
 
-type DarkField = QualityBooleanField & {
+export type DarkField = QualityBooleanField & {
   confidence_dark?: number;
 };
 
-type FlashField = QualityBooleanField & {
+export type FlashField = QualityBooleanField & {
   confidence_flash?: number;
 };
 
-type PhotocopyField = QualityBooleanField & {
+export type PhotocopyField = QualityBooleanField & {
   confidence_photocopy?: number;
 };
 
-type ScreenField = QualityBooleanField & {
+export type ScreenField = QualityBooleanField & {
   confidence_screen?: number;
 };
 
-type DocumentField = {
+export type DocumentField = {
   confidence?: number;
   value?: string;
 };
 
-type RotateField = {
+export type RotateField = {
   confidence?: number;
   value?: string;
   fixed_image?: string;

@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type BSTK_FIELDS =
+export type BSTK_FIELDS =
   | "document_type"
   | "document_number"
   | "office_name"

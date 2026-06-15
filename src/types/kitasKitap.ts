@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type KITAS_KITAP_FIELDS =
+export type KITAS_KITAP_FIELDS =
   | "photo"
   | "sign"
   | "address"

@@ -3,7 +3,7 @@
 
 import type { FieldValue } from "./common";
 
-type WORK_PERMIT_FIELDS =
+export type WORK_PERMIT_FIELDS =
   | "card_number"
   | "card_type"
   | "date_of_apply"

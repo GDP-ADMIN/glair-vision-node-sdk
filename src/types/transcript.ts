@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type TRANSCRIPT_FIELDS =
+export type TRANSCRIPT_FIELDS =
   | "student_name"
   | "institution"
   | "faculty"

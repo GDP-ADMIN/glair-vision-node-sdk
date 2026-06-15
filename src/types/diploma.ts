@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type DIPLOMA_FIELDS =
+export type DIPLOMA_FIELDS =
   | "student_name"
   | "student_number"
   | "student_birth_place_date"

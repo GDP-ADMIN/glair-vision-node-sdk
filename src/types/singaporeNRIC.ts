@@ -2,7 +2,7 @@
 // Each field has confidence/value structure similar to KTP
 
 import type { FieldValue } from "./common";
-type NRIC_FIELDS =
+export type NRIC_FIELDS =
   | "address"
   | "blood_type"
   | "card_number"

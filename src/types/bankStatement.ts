@@ -1,6 +1,6 @@
 import type { FieldValue } from "./common";
 
-type BANK_STATEMENT_FIELDS =
+export type BANK_STATEMENT_FIELDS =
   | "bank_name"
   | "start_period"
   | "end_period"
@@ -13,7 +13,7 @@ type BANK_STATEMENT_FIELDS =
   | "product_name"
   | "total_transactions";
 
-type TRANSACTION_FIELDS =
+export type TRANSACTION_FIELDS =
   | "posting_date"
   | "posting_time"
   | "effective_date"
@@ -24,7 +24,7 @@ type TRANSACTION_FIELDS =
   | "mutation_amount"
   | "signed_amount";
 
-type BankStatementTransaction = Partial<Record<TRANSACTION_FIELDS, FieldValue>> & {
+export type BankStatementTransaction = Partial<Record<TRANSACTION_FIELDS, FieldValue>> & {
   [key: string]: FieldValue | undefined;
 };
 

@@ -2,7 +2,7 @@
 // Each field has confidence/value structure similar to KTP
 
 import type { FieldValue } from "./common";
-type INVOICE_FIELDS =
+export type INVOICE_FIELDS =
   | "invoice_number"
   | "invoice_date"
   | "invoice_due_date"
@@ -23,7 +23,7 @@ type INVOICE_FIELDS =
   | "remittance_address_recipient"
   | "currency";
 
-type ITEM_FIELDS =
+export type INVOICE_ITEM_FIELDS =
   | "item_name"
   | "item_quantity"
   | "item_price"
@@ -32,7 +32,7 @@ type ITEM_FIELDS =
   | "item_unit";
 
 // Invoice item row type
-type InvoiceItem = Partial<Record<ITEM_FIELDS, FieldValue>> & {
+export type InvoiceItem = Partial<Record<INVOICE_ITEM_FIELDS, FieldValue>> & {
   [key: string]: FieldValue | undefined;
 };
 
