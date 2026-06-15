@@ -138,6 +138,32 @@ export default async function handler(
 
 ## OCR
 
+### Custom Response Types
+
+Each OCR method accepts an optional generic type parameter to specify the shape of the response data:
+
+```ts
+import { Vision } from "@glair/vision";
+
+const vision = new Vision({
+  apiKey: "api-key",
+  username: "username",
+  password: "password",
+});
+
+// Default — response is typed as the built-in KTP type
+const resp = await vision.ocr.ktp({ image: "/path/to/image.jpg" });
+
+// Custom — provide your own response type
+interface MyKtpResponse {
+  data?: { nik: string; name: string };
+  status: string;
+}
+const customResp = await vision.ocr.ktp<MyKtpResponse>({ image: "/path/to/image.jpg" });
+```
+
+The generic parameter is available on all OCR methods and defaults to the document-specific type (e.g., `KTP`, `NPWP`, `KK`), so you only need to specify it when you want a custom return type.
+
 ### KTP
 
 ```ts
@@ -237,7 +263,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## BSTK
+### BSTK
 
 ```ts
 const resp = await vision.ocr
@@ -247,7 +273,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Diploma
+### Diploma
 
 ```ts
 const resp = await vision.ocr
@@ -257,7 +283,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Financial Statement
+### Financial Statement
 
 ```ts
 const resp = await vision.ocr
@@ -267,7 +293,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## KITAS / KITAP
+### KITAS / KITAP
 
 ```ts
 const resp = await vision.ocr
@@ -277,7 +303,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Phone Packaging
+### Phone Packaging
 
 ```ts
 const resp = await vision.ocr
@@ -287,7 +313,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## SKPR
+### SKPR
 
 ```ts
 const resp = await vision.ocr
@@ -297,7 +323,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## SPK
+### SPK
 
 ```ts
 const resp = await vision.ocr
@@ -307,7 +333,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Qualities
+### Qualities
 
 ```ts
 const resp = await vision.ocr
@@ -317,7 +343,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Tax Invoice
+### Tax Invoice
 
 ```ts
 const resp = await vision.ocr
@@ -327,7 +353,7 @@ const resp = await vision.ocr
 console.log(resp);
 ```
 
-## Transcript
+### Transcript
 
 ```ts
 const resp = await vision.ocr

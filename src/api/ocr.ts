@@ -47,137 +47,137 @@ export class Ocr {
     this.npwpSessions = new NPWPSessions(config);
   }
 
-  async ktp(param: OCRParam, newConfig?: Partial<Settings>) {
+  async ktp<T = KTP>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - KTP");
-    return this.fetchOCR<KTP>(param, "ktp", newConfig);
+    return this.fetchOCR<T>(param, "ktp", newConfig);
   }
 
-  async npwp(param: OCRParam, newConfig?: Partial<Settings>) {
+  async npwp<T = NPWP>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - NPWP");
-    return this.fetchOCR<NPWP>(param, "npwp", newConfig);
+    return this.fetchOCR<T>(param, "npwp", newConfig);
   }
 
-  async kk(param: OCRParam, newConfig?: Partial<Settings>) {
+  async kk<T = KK>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - KK");
-    return this.fetchOCR<KK>(param, "kk", newConfig);
+    return this.fetchOCR<T>(param, "kk", newConfig);
   }
 
-  async stnk(param: OCRParam, newConfig?: Partial<Settings>) {
+  async stnk<T = STNK>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - STNK");
-    return this.fetchOCR<STNK>(param, "stnk", newConfig);
+    return this.fetchOCR<T>(param, "stnk", newConfig);
   }
 
-  async bpkb(param: OCRParam, newConfig?: Partial<Settings>) {
+  async bpkb<T = BPKB>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - BPKB");
-    return this.fetchOCR<BPKB>(param, "bpkb", newConfig);
+    return this.fetchOCR<T>(param, "bpkb", newConfig);
   }
 
-  async passport(param: OCRParam, newConfig?: Partial<Settings>) {
+  async passport<T = Passport>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Passport");
-    return this.fetchOCR<Passport>(param, "passport", newConfig);
+    return this.fetchOCR<T>(param, "passport", newConfig);
   }
 
-  async licensePlate(param: OCRParam, newConfig?: Partial<Settings>) {
+  async licensePlate<T = Plate>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - License Plate");
-    return this.fetchOCR<Plate>(param, "plate", newConfig);
+    return this.fetchOCR<T>(param, "plate", newConfig);
   }
 
-  async generalDocument(param: OCRParam, newConfig?: Partial<Settings>) {
+  async generalDocument<T = GeneralDocument>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - General Document");
-    return this.fetchOCR<GeneralDocument>(param, "general-document", newConfig);
+    return this.fetchOCR<T>(param, "general-document", newConfig);
   }
 
-  async invoice(param: OCRParam, newConfig?: Partial<Settings>) {
+  async invoice<T = Invoice>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Invoice");
-    return this.fetchOCR<Invoice>(param, "invoice", newConfig);
+    return this.fetchOCR<T>(param, "invoice", newConfig);
   }
 
-  async receipt(param: OCRParam, newConfig?: Partial<Settings>) {
+  async receipt<T = Receipt>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Receipt");
-    return this.fetchOCR<Receipt>(param, "receipt", newConfig);
+    return this.fetchOCR<T>(param, "receipt", newConfig);
   }
 
-  async singaporeNRIC(param: OCRParam, newConfig?: Partial<Settings>) {
+  async singaporeNRIC<T = SingaporeNRIC>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Singapore NRIC");
-    return this.fetchOCR<SingaporeNRIC>(param, "singapore-nric", newConfig);
+    return this.fetchOCR<T>(param, "singapore-nric", newConfig);
   }
 
-  async singaporeFamilyPass(param: OCRParam, newConfig?: Partial<Settings>) {
+  async singaporeFamilyPass<T = SingaporeFamilyPass>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Singapore Family Pass");
-    return this.fetchOCR<SingaporeFamilyPass>(
+    return this.fetchOCR<T>(
       param,
       "singapore-family-pass",
       newConfig
     );
   }
 
-  async singaporeWorkPermit(param: OCRParam, newConfig?: Partial<Settings>) {
+  async singaporeWorkPermit<T = SingaporeWorkPermit>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Singapore Work Permit");
-    return this.fetchOCR<SingaporeWorkPermit>(
+    return this.fetchOCR<T>(
       param,
       "singapore-work-permit",
       newConfig
     );
   }
 
-    async sim(param: OCRParam, newConfig?: Partial<Settings>) {
+    async sim<T = SIM>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - SIM");
-    return this.fetchOCR<SIM>(param,"sim",newConfig);
+    return this.fetchOCR<T>(param,"sim",newConfig);
   }
 
-  async bankStatement(param: OCRParam, newConfig?: Partial<Settings>) {
+  async bankStatement<T = BankStatement>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Bank Statement");
-    return this.fetchOCR<BankStatement>(param, "bank-statement", newConfig);
+    return this.fetchOCR<T>(param, "bank-statement", newConfig);
   }
 
-  async bstk(param: OCRParam, newConfig?: Partial<Settings>) {
+  async bstk<T = BSTK>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - BSTK");
-    return this.fetchOCR<BSTK>(param, "bstk", newConfig);
+    return this.fetchOCR<T>(param, "bstk", newConfig);
   }
 
-  async diploma(param: OCRParam, newConfig?: Partial<Settings>) {
+  async diploma<T = Diploma>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Diploma");
-    return this.fetchOCR<Diploma>(param, "diploma", newConfig);
+    return this.fetchOCR<T>(param, "diploma", newConfig);
   }
 
-  async financialStatement(param: OCRParam, newConfig?: Partial<Settings>) {
+  async financialStatement<T = FinancialStatement>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Financial Statement");
-    return this.fetchOCR<FinancialStatement>(param, "financial-statement", newConfig);
+    return this.fetchOCR<T>(param, "financial-statement", newConfig);
   }
 
-  async kitasKitap(param: OCRParam, newConfig?: Partial<Settings>) {
+  async kitasKitap<T = KitasKitap>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - KITAS/KITAP");
-    return this.fetchOCR<KitasKitap>(param, "kitas-kitap", newConfig);
+    return this.fetchOCR<T>(param, "kitas-kitap", newConfig);
   }
 
-  async phonePackaging(param: OCRParam, newConfig?: Partial<Settings>) {
+  async phonePackaging<T = PhonePackaging>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Phone Packaging");
-    return this.fetchOCR<PhonePackaging>(param, "phone-packaging", newConfig);
+    return this.fetchOCR<T>(param, "phone-packaging", newConfig);
   }
 
-  async skpr(param: OCRParam, newConfig?: Partial<Settings>) {
+  async skpr<T = SKPR>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - SKPR");
-    return this.fetchOCR<SKPR>(param, "skpr", newConfig);
+    return this.fetchOCR<T>(param, "skpr", newConfig);
   }
 
-  async spk(param: OCRParam, newConfig?: Partial<Settings>) {
+  async spk<T = SPK>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - SPK");
-    return this.fetchOCR<SPK>(param, "spk", newConfig);
+    return this.fetchOCR<T>(param, "spk", newConfig);
   }
 
-  async qualities(param: OCRParam, newConfig?: Partial<Settings>) {
+  async qualities<T = Qualities>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Qualities");
-    return this.fetchOCR<Qualities>(param, "qualities", newConfig);
+    return this.fetchOCR<T>(param, "qualities", newConfig);
   }
 
-  async taxInvoice(param: OCRParam, newConfig?: Partial<Settings>) {
+  async taxInvoice<T = TaxInvoice>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Tax Invoice");
-    return this.fetchOCR<TaxInvoice>(param, "tax-invoice", newConfig);
+    return this.fetchOCR<T>(param, "tax-invoice", newConfig);
   }
 
-  async transcript(param: OCRParam, newConfig?: Partial<Settings>) {
+  async transcript<T = Transcript>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Transcript");
-    return this.fetchOCR<Transcript>(param, "transcript", newConfig);
+    return this.fetchOCR<T>(param, "transcript", newConfig);
   }
 
   private async fetchOCR<T>(
