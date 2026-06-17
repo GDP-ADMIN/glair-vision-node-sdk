@@ -181,8 +181,6 @@ describe("Ocr", () => {
     { method: "financialStatement", label: "OCR - Financial Statement", endpoint: "ocr/:version/financial-statement" },
     { method: "kitasKitap", label: "OCR - KITAS/KITAP", endpoint: "ocr/:version/kitas-kitap" },
     { method: "phonePackaging", label: "OCR - Phone Packaging", endpoint: "ocr/:version/phone-packaging" },
-    { method: "skpr", label: "OCR - SKPR", endpoint: "ocr/:version/skpr" },
-    { method: "spk", label: "OCR - SPK", endpoint: "ocr/:version/spk" },
     { method: "qualities", label: "OCR - Qualities", endpoint: "ocr/:version/qualities" },
     { method: "taxInvoice", label: "OCR - Tax Invoice", endpoint: "ocr/:version/tax-invoice" },
     { method: "transcript", label: "OCR - Transcript", endpoint: "ocr/:version/transcript" },

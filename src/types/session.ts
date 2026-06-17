@@ -17,14 +17,14 @@ export function validateSessionCreateParam(param: SessionCreateParam) {
         return "Success URL is required";
       }
 
-      if (!isValidURL(val)) {
+      if (typeof val !== 'string' || !isValidURL(val)) {
         return "Success URL must be a valid URL";
       }
 
       return "";
     },
     cancel_url: (val: any) => {
-      if (!isDefined(val) || isValidURL(val)) {
+      if (!isDefined(val) || (typeof val !== 'string' || isValidURL(val))) {
         return "";
       }
 

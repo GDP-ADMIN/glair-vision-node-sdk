@@ -28,8 +28,6 @@ import type { Diploma } from "../types/diploma";
 import type { FinancialStatement } from "../types/financialStatement";
 import type { KitasKitap } from "../types/kitasKitap";
 import type { PhonePackaging } from "../types/phonePackaging";
-import type { SKPR } from "../types/skpr";
-import type { SPK } from "../types/spk";
 import type { Qualities } from "../types/qualities";
 import type { TaxInvoice } from "../types/taxInvoice";
 import type { Transcript } from "../types/transcript";
@@ -153,16 +151,6 @@ export class Ocr {
   async phonePackaging<T = PhonePackaging>(param: OCRParam, newConfig?: Partial<Settings>) {
     logInfo("OCR - Phone Packaging");
     return this.fetchOCR<T>(param, "phone-packaging", newConfig);
-  }
-
-  async skpr<T = SKPR>(param: OCRParam, newConfig?: Partial<Settings>) {
-    logInfo("OCR - SKPR");
-    return this.fetchOCR<T>(param, "skpr", newConfig);
-  }
-
-  async spk<T = SPK>(param: OCRParam, newConfig?: Partial<Settings>) {
-    logInfo("OCR - SPK");
-    return this.fetchOCR<T>(param, "spk", newConfig);
   }
 
   async qualities<T = Qualities>(param: OCRParam, newConfig?: Partial<Settings>) {
