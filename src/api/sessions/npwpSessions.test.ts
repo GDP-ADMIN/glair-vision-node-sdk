@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from "vitest";
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 
 import { NPWPSessions } from "./npwpSessions";
@@ -31,16 +31,18 @@ describe("NPWPSessions", () => {
   };
 
   const server = setupServer(
-    rest.get(
+    http.get(
       "http://localhost:3000/ocr/v1/npwp-sessions/1234",
-      (_, res, ctx) => {
-        return res(ctx.json(mockRetrieveSessionResponse));
+      () => {
+        return HttpResponse.json(mockRetrieveSessionResponse);
       }
     ),
-    rest.post(
+
+    http.post(
       "http://localhost:3000/ocr/v1/npwp-sessions",
-      async (req, res, ctx) => {
-        const body = await req.text();
+      async ({ request }) => {
+        const body = await request.text();
+
         if (
           body !==
           JSON.stringify({
@@ -48,15 +50,18 @@ describe("NPWPSessions", () => {
             cancel_url: "https://www.google.com/fail",
           })
         ) {
-          return res(ctx.status(500));
+          return new HttpResponse(null, {
+            status: 500,
+          });
         }
 
-        return res(ctx.json(mockCreateSessionResponse));
+        return HttpResponse.json(mockCreateSessionResponse);
       }
     )
   );
 
   beforeAll(() => server.listen());
+
   afterAll(() => server.close());
 
   test("should be able to be constructed", () => {
@@ -72,6 +77,7 @@ describe("NPWPSessions", () => {
 
   test("should create an npwp session", async () => {
     const session = new NPWPSessions(config);
+
     const result = await session.create({
       success_url: "https://www.google.com/success",
       cancel_url: "https://www.google.com/fail",
@@ -82,6 +88,7 @@ describe("NPWPSessions", () => {
 
   test("should throw validation error", async () => {
     const session = new NPWPSessions(config);
+
     const param = {
       success_url: "not_an_url",
       cancel_url: "https://www.google.com/fail",
@@ -94,6 +101,7 @@ describe("NPWPSessions", () => {
 
   test("should retrieve an npwp session", async () => {
     const session = new NPWPSessions(config);
+
     const result = await session.retrieve({
       sid: "1234",
     });

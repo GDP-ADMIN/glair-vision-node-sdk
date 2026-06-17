@@ -1,7 +1,7 @@
 {
   "name": "@glair/vision",
   "license": "MIT",
-  "version": "0.1.0-beta.2",
+  "version": "0.2.0-beta.1",
   "description": "GLAIR Vision Node.js SDK",
   "keywords": [
     "glair",
@@ -31,7 +31,7 @@
     "lib"
   ],
   "engines": {
-    "node": ">=18.*"
+    "node": ">=20.*"
   },
   "scripts": {
     "dev": "vite",
@@ -43,11 +43,11 @@
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^5.0.2",
-    "@vitest/coverage-c8": "^0.29.7",
-    "msw": "^1.2.2",
+    "@vitest/coverage-v8": "^4.1.8",
+    "msw": "^2.14.6",
     "semver": "^7.5.4",
-    "typescript": "^4.9.3",
-    "vite": "^4.2.0",
-    "vitest": "^0.32.2"
+    "typescript": "^5.9.0",
+    "vite": "^8.0.16",
+    "vitest": "^4.1.8"
   }
 }
