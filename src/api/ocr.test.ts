@@ -99,11 +99,11 @@ describe("Ocr", () => {
       );
     });
 
-    it("should NOT append /qualities for qualities endpoint even if qualities_detector is true", async () => {
-      await ocr.qualities({ image: mockImage, qualities_detector: true });
+    it("should ignore qualities_detector for non-KTP methods", async () => {
+      await (ocr.npwp as any)({ image: mockImage, qualities_detector: true });
       expect(mockVisionFetch).toHaveBeenCalledWith(
         mockConfigValue,
-        "ocr/:version/qualities",
+        "ocr/:version/npwp",
         expect.any(Object)
       );
     });
