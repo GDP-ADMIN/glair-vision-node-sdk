@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { isDefined, isValidURL, runSchemaValidation } from "./validator";
+import { isDefined, isNumberInRange, isValidURL, runSchemaValidation } from "./validator";
 
 describe("isValidURL", () => {
   test("should return false", () => {
@@ -47,6 +47,38 @@ describe("isString", () => {
     const input = new String("test_string");
 
     expect(isDefined(input)).toBe(true);
+  });
+});
+
+describe("isNumberInRange", () => {
+  test("should return true for value within range", () => {
+    expect(isNumberInRange(2, 1, 4)).toBe(true);
+  });
+
+  test("should return true for min boundary", () => {
+    expect(isNumberInRange(1, 1, 4)).toBe(true);
+  });
+
+  test("should return true for max boundary", () => {
+    expect(isNumberInRange(4, 1, 4)).toBe(true);
+  });
+
+  test("should return false for value below min", () => {
+    expect(isNumberInRange(0, 1, 4)).toBe(false);
+  });
+
+  test("should return false for value above max", () => {
+    expect(isNumberInRange(5, 1, 4)).toBe(false);
+  });
+
+  test("should return false for NaN", () => {
+    expect(isNumberInRange(NaN, 1, 4)).toBe(false);
+  });
+
+  test("should return false for non-number types", () => {
+    expect(isNumberInRange("2", 1, 4)).toBe(false);
+    expect(isNumberInRange(undefined, 1, 4)).toBe(false);
+    expect(isNumberInRange(null, 1, 4)).toBe(false);
   });
 });
 

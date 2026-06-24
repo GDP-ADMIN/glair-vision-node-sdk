@@ -4,7 +4,7 @@ import { KtpSessions } from "./sessions/ktpSessions";
 import { NPWPSessions } from "./sessions/npwpSessions";
 
 import { logInfo } from "../util/logger";
-import { isDefined, runSchemaValidation } from "../util/validator";
+import { isDefined, isNumberInRange, runSchemaValidation } from "../util/validator";
 import { visionFetch } from "../util/visionFetch";
 
 
@@ -36,6 +36,7 @@ import { getImageBlob } from "../util/image";
 
 type BaseOCRParam = { image: ImageSource };
 type OCRParam = BaseOCRParam & { qualities_detector?: boolean };
+type BPKBParam = BaseOCRParam & { page?: number };
 
 export class Ocr {
   readonly ktpSessions: KtpSessions;
@@ -66,9 +67,37 @@ export class Ocr {
     return this.fetchOCR<STNK>(param, "stnk", newConfig);
   }
 
-  async bpkb(param: BaseOCRParam, newConfig?: Partial<Settings>) {
+  async bpkb(param: BPKBParam, newConfig?: Partial<Settings>): Promise<BPKB> {
     logInfo("OCR - BPKB");
-    return this.fetchOCR<BPKB>(param, "bpkb", newConfig);
+    const validationResult = this.validateBPKBParam(param);
+    if (validationResult.length) {
+      throw new Error(validationResult[0].message);
+    }
+
+    const { image } = param;
+
+    const formData = new FormData();
+    formData.set(
+      "image",
+      await getImageBlob(image),
+      "filename.jpg"
+    );
+
+    if (param.page !== undefined) {
+      formData.set("page", String(param.page));
+    }
+
+    const req = {
+      method: "POST",
+      body: formData,
+    };
+
+    const config = this.config.getConfig(newConfig);
+    return visionFetch(
+      config,
+      this.buildEndpoint("bpkb"),
+      req
+    );
   }
 
   async passport(param: BaseOCRParam, newConfig?: Partial<Settings>) {
@@ -215,5 +244,16 @@ export class Ocr {
     };
 
     return runSchemaValidation(param, schema);
+  }
+
+  validateBPKBParam(param: BPKBParam) {
+    const errors = this.validateOCRParam(param);
+    if (errors.length) return errors;
+
+    if (param.page !== undefined && !isNumberInRange(param.page, 1, 4)) {
+      return [{ key: "page", message: "Page must be between 1 and 4" }];
+    }
+
+    return [];
   }
 }

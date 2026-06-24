@@ -69,6 +69,44 @@ describe("Ocr", () => {
   });
 
   // ─────────────────────────────────────────────
+  // validateBPKBParam
+  // ─────────────────────────────────────────────
+  describe("validateBPKBParam", () => {
+    it("should return no errors when image is provided without page", () => {
+      const result = ocr.validateBPKBParam({ image: mockImage });
+      expect(result).toHaveLength(0);
+    });
+
+    it("should return no errors when page is within range (1)", () => {
+      const result = ocr.validateBPKBParam({ image: mockImage, page: 1 });
+      expect(result).toHaveLength(0);
+    });
+
+    it("should return no errors when page is within range (4)", () => {
+      const result = ocr.validateBPKBParam({ image: mockImage, page: 4 });
+      expect(result).toHaveLength(0);
+    });
+
+    it("should return an error when page is below range (0)", () => {
+      const result = ocr.validateBPKBParam({ image: mockImage, page: 0 });
+      expect(result).toHaveLength(1);
+      expect(result[0].message).toBe("Page must be between 1 and 4");
+    });
+
+    it("should return an error when page is above range (5)", () => {
+      const result = ocr.validateBPKBParam({ image: mockImage, page: 5 });
+      expect(result).toHaveLength(1);
+      expect(result[0].message).toBe("Page must be between 1 and 4");
+    });
+
+    it("should return image error when image is missing", () => {
+      const result = ocr.validateBPKBParam({ image: undefined as any });
+      expect(result).toHaveLength(1);
+      expect(result[0].message).toBe("Image is required");
+    });
+  });
+
+  // ─────────────────────────────────────────────
   // buildEndpoint (via fetchOCR behavior)
   // ─────────────────────────────────────────────
   describe("buildEndpoint", () => {
@@ -205,6 +243,36 @@ describe("Ocr", () => {
       await expect(
         (ocr[method] as Function)({ image: undefined })
       ).rejects.toThrow("Image is required");
+    });
+  });
+
+  // ─────────────────────────────────────────────
+  // BPKB-specific page behavior
+  // ─────────────────────────────────────────────
+  describe("bpkb page", () => {
+    it("should send page as a form field when provided", async () => {
+      const formDataSetSpy = vi.spyOn(FormData.prototype, "set");
+      await ocr.bpkb({ image: mockImage, page: 2 });
+      expect(formDataSetSpy).toHaveBeenCalledWith("page", "2");
+    });
+
+    it("should not send page as a form field when not provided", async () => {
+      const formDataSetSpy = vi.spyOn(FormData.prototype, "set");
+      await ocr.bpkb({ image: mockImage });
+      const pageCalls = formDataSetSpy.mock.calls.filter(
+        ([key]) => key === "page"
+      );
+      expect(pageCalls).toHaveLength(0);
+    });
+
+    it("should throw when page is out of range", async () => {
+      await expect(
+        ocr.bpkb({ image: mockImage, page: 0 } as any)
+      ).rejects.toThrow("Page must be between 1 and 4");
+
+      await expect(
+        ocr.bpkb({ image: mockImage, page: 5 } as any)
+      ).rejects.toThrow("Page must be between 1 and 4");
     });
   });
 });
